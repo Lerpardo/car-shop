@@ -1,11 +1,11 @@
 import ICar from '../Interfaces/ICar';
 
 class Car {
-  private id: string | undefined;
+  private id?: string;
   private model: string;
   private year: number;
   private color: string;
-  private status: boolean | undefined;
+  private status?: boolean;
   private buyValue: number;
   private doorsQty: number;
   private seatsQty: number;
