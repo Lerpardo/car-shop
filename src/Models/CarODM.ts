@@ -21,6 +21,22 @@ class CarODM {
   public async create(car: ICar): Promise<ICar> {
     return this.model.create({ ...car });
   }
+
+  public async findById(id: string): Promise<ICar | null> {
+    return this.model.findById(id);
+  }
+
+  public async findAll(): Promise<ICar[]> {
+    return this.model.find();
+  }
+
+  public async update(id: string, car: ICar): Promise<ICar | null> {
+    return this.model.findByIdAndUpdate(id, car, { new: true });
+  }
+
+  public async delete(id: string): Promise<ICar | null> {
+    return this.model.findByIdAndDelete(id);
+  }
 }
 
 export default CarODM;
