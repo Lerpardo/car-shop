@@ -1,0 +1,14 @@
+const errorMap = {
+  success: 200,
+  created: 201,
+  noContent: 204,
+  badRequest: 400,
+  unauthorized: 401,
+  notFound: 404,
+  conflict: 409,
+  unprocessable: 422,
+} as { [key: string]: number };
+  
+const mapError = (type: string) => errorMap[type] || 500;
+  
+export default mapError;
