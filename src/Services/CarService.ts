@@ -23,7 +23,7 @@ class CarService {
 
   public async findById(id: string) {
     const verifyCar = checkId(id);
-    if (!verifyCar) {
+    if (verifyCar) {
       return { type: 'unprocessable', message: { message: 'Invalid mongo id' } };
     }
 
@@ -33,7 +33,7 @@ class CarService {
       return { type: 'notFound', message: { message: 'Car not found' } };
     }
 
-    return { type: 'sucess', message: this.createCarDomain(car) };
+    return { type: 'success', message: this.createCarDomain(car) };
   }
 
   public async findAll() {
@@ -49,7 +49,7 @@ class CarService {
       return { type: 'notFound', message: { message: 'Car not found' } };
     }
 
-    return { type: 'sucess', message: this.createCarDomain(updatedCar) };
+    return { type: 'success', message: this.createCarDomain(updatedCar) };
   }
 
   public async delete(id: string) {
