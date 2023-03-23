@@ -5,7 +5,7 @@ class Car {
   private model: string;
   private year: number;
   private color: string;
-  private status: boolean;
+  private status: boolean | undefined;
   private buyValue: number;
   private doorsQty: number;
   private seatsQty: number;
@@ -17,7 +17,7 @@ class Car {
     this.model = car.model;
     this.year = car.year;
     this.color = car.color;
-    this.status = false;
+    this.status = car.status;
     this.buyValue = car.buyValue;
     this.doorsQty = car.doorsQty;
     this.seatsQty = car.seatsQty;
