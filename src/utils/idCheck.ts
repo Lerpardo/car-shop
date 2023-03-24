@@ -1,4 +1,4 @@
-const checkId = (id: string) => {
+export const checkId = (id: string) => {
   const checkForHexRegExp = /^(?=[a-f\d]{24}$)(\d+[a-f]|[a-f]+\d)/i;
   const validation = checkForHexRegExp.test(id);
   if (!validation) {
@@ -6,4 +6,5 @@ const checkId = (id: string) => {
   }
 };
 
-export default checkId;
+export const notFound = (message: string) => (
+  { type: 'notFound', message: { message: `${message} not found` } });

@@ -1,7 +1,7 @@
 import Motorcycle from '../Domains/Motorcycle';
 import IMotorcycle from '../Interfaces/IMotorcycle';
 import MotorcycleODM from '../Models/MotorcycleODM';
-import checkId from '../utils/idCheck';
+import { checkId, notFound } from '../utils/idCheck';
 
 class MotorcycleService {
   private model: MotorcycleODM;
@@ -26,9 +26,7 @@ class MotorcycleService {
     if (verifyMoto) return verifyMoto;
     const moto = await this.model.findById(id);
 
-    if (!moto) {
-      return { type: 'notFound', message: { message: 'Motorcycle not found' } };
-    }
+    if (!moto) return notFound('Motorcycle');
 
     return { type: 'success', message: this.createMotorcycleDomain(moto) };
   }
@@ -41,10 +39,9 @@ class MotorcycleService {
   public async update(id: string, moto: IMotorcycle) {
     const verifyMoto = checkId(id);
     if (verifyMoto) return verifyMoto;
+
     const updatedMoto = await this.model.update(id, moto);
-    if (!updatedMoto) {
-      return { type: 'notFound', message: { message: 'Motorcycle not found' } };
-    }
+    if (!updatedMoto) return notFound('Motorcycle');
 
     return { type: 'success', message: this.createMotorcycleDomain(updatedMoto) };
   }
