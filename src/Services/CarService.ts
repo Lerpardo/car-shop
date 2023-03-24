@@ -50,7 +50,8 @@ class CarService {
     const verifyCar = checkId(id);
     if (verifyCar) return verifyCar;
 
-    await this.model.delete(id);
+    const deletedCar = await this.model.delete(id);
+    if (!deletedCar) return notFound('Car');
 
     return { type: 'noContent', message: '' };
   }
