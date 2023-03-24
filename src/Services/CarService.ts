@@ -23,9 +23,7 @@ class CarService {
 
   public async findById(id: string) {
     const verifyCar = checkId(id);
-    if (verifyCar) {
-      return { type: 'unprocessable', message: { message: 'Invalid mongo id' } };
-    }
+    if (verifyCar) return verifyCar;
     const car = await this.model.findById(id);
 
     if (!car) {
@@ -53,9 +51,8 @@ class CarService {
 
   public async delete(id: string) {
     const verifyCar = checkId(id);
-    if (!verifyCar) {
-      return { type: 'unprocessable', message: { message: 'Invalid mongo id' } };
-    }
+    if (verifyCar) return verifyCar;
+
     await this.model.delete(id);
 
     return { type: 'noContent', message: '' };
