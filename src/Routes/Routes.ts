@@ -6,11 +6,11 @@ const jsonParser = bodyParser.json();
 // const urlencodedParser = bodyParser.urlencoded({ extended: false });
 const carRouter = Router();
 
-carRouter.post('/cars', jsonParser, (req, res, next) => new CarController(req, res, next).create());
+carRouter.get('/cars', (req, res, next) => new CarController(req, res, next).findAll());
 
 carRouter.get('/cars/:id', (req, res, next) => new CarController(req, res, next).findById());
 
-carRouter.get('/cars', (req, res, next) => new CarController(req, res, next).findAll());
+carRouter.post('/cars', jsonParser, (req, res, next) => new CarController(req, res, next).create());
 
 carRouter.put(
   '/cars/:id',

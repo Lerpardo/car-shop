@@ -4,7 +4,7 @@ import CarODM from '../Models/CarODM';
 import checkId from '../utils/idCheck';
 
 class CarService {
-  private model: CarODM;
+  // private model: CarODM;
   private createCarDomain(car: ICar | null): Car | null {
     if (car) {
       return new Car(car); 
@@ -12,12 +12,13 @@ class CarService {
     return null;
   }
 
-  constructor() {
-    this.model = new CarODM();
-  }
+  // constructor() {
+  //   this.model = new CarODM();
+  // }
   
   public async create(car: ICar) {
-    const newCar = await this.model.create(car);
+    const carODM = new CarODM();
+    const newCar = await carODM.create(car);
     return this.createCarDomain(newCar);
   }
 
@@ -26,10 +27,10 @@ class CarService {
     if (verifyCar) {
       return { type: 'unprocessable', message: { message: 'Invalid mongo id' } };
     }
+    const carODM = new CarODM();
+    const car = await carODM.findById(id);
 
-    const car = await this.model.findById(id);
-
-    if (!car) {
+    if (car === null) {
       return { type: 'notFound', message: { message: 'Car not found' } };
     }
 
@@ -37,14 +38,16 @@ class CarService {
   }
 
   public async findAll() {
-    const cars = await this.model.findAll();
+    const carODM = new CarODM();
+    const cars = await carODM.findAll();
     return cars.map((car) => this.createCarDomain(car));
   }
 
   public async update(id: string, car: ICar) {
     const verifyCar = checkId(id);
     if (verifyCar) return verifyCar;
-    const updatedCar = await this.model.update(id, car);
+    const carODM = new CarODM();
+    const updatedCar = await carODM.update(id, car);
     if (!updatedCar) {
       return { type: 'notFound', message: { message: 'Car not found' } };
     }
@@ -57,7 +60,8 @@ class CarService {
     if (!verifyCar) {
       return { type: 'unprocessable', message: { message: 'Invalid mongo id' } };
     }
-    await this.model.delete(id);
+    const carODM = new CarODM();
+    await carODM.delete(id);
 
     return { type: 'noContent', message: '' };
   }
