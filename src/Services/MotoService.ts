@@ -50,7 +50,8 @@ class MotorcycleService {
     const verifyMoto = checkId(id);
     if (verifyMoto) return verifyMoto;
 
-    await this.model.delete(id);
+    const deletedMoto = await this.model.delete(id);
+    if (!deletedMoto) return notFound('Motorcycle');
 
     return { type: 'noContent', message: '' };
   }
