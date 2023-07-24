@@ -23,40 +23,12 @@ Uma API com CRUD para gerenciar uma concessionária de veículos. Sendo utilizad
 
 **Back-end:** Mongo, Mongoose, Typescript
 
-
-## Instalação
-
-Para rodar mongoDB services 
-
-```bash
-  cd car-shop
-  docker-compose up -d
-```
-    
-O mongo vai rodar localmente na porta padrão (27017), ou adapte, caso queria fazer uso da aplicação em containers.
-Esses serviços irão inicializar um container chamado car_shop e outro chamado car_shop_db.
-
-Para rodar a aplicação
-
-```bash
-npm run dev
-```
-[localhost](http://localhost:3000)
-## Rodando os testes
-
-Para rodar os testes, rode o seguinte comando
-
-```bash
-  npm run test
-```
-
-
 ## Documentação da API
 
 #### Retorna todos os carros
 
 ```http
-  GET /localhost/cars
+  GET /cars
 ```
 
 | Parâmetro   | Tipo       | Descrição                           |
@@ -66,7 +38,7 @@ Para rodar os testes, rode o seguinte comando
 #### Retorna um carro
 
 ```http
-  GET /localhost/cars/${id}
+  GET /cars/${id}
 ```
 
 | Parâmetro   | Tipo       | Descrição                                   |
@@ -76,7 +48,7 @@ Para rodar os testes, rode o seguinte comando
 #### Cadastra um novo carro
 
 ```http
-POST /localhost/cars
+POST /cars
 ```
 - O corpo da requisição poderá seguir o formato abaixo:
 
@@ -95,7 +67,7 @@ POST /localhost/cars
 #### Atualiza um carro
 
 ```http
-  PUT /localhost/cars/${id}
+  PUT /cars/${id}
 ```
 
 | Parâmetro   | Tipo       | Descrição                                   |
@@ -117,7 +89,7 @@ POST /localhost/cars
 #### Deleta um carro
 
 ```http
-  DELETE /localhost/cars/${id}
+  DELETE /cars/${id}
 ```
 
 | Parâmetro   | Tipo       | Descrição                                   |
